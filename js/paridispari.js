@@ -21,20 +21,33 @@ Dichiariamo chi ha vinto
 */
 
 // Dichiaro le variabili globali
-const userEvenOdd = prompt('pari o dispari?', 'pari').trim().toLocaleLowerCase();
-const userNumber = parseInt(prompt('scegli un numero da 1 a 5', '3').trim().toLocaleLowerCase());
-let cpuNumber;
-let sumNumbers;
-let result; // Risposta alla domanda "la somma dei numeri è pari?"
-let getWinner = 'Hai vinto!';
+const userEvenOdd = prompt('Pari o Dispari?', 'Pari').trim().toLocaleLowerCase();
+const userNumber = parseInt(prompt('Scegli un numero da 1 a 5', '3').trim());
 
-// Creo una funzione che restituisca un numero random da 1 a 5
-function getRandomNumber(min = 1, max = 5) {
-    const random = Math.floor(Math.random() * (max - min + 1) + min);
-    return random;
+//! VALIDAZIONE
+let isValid = true;
+
+if (userNumber < 1 || userNumber > 5 || isNaN(userNumber)){
+    isValid = false;
+} else if (userEvenOdd !== 'pari' && userEvenOdd !== 'dispari'){
+    isValid = false;
 }
 
-// Assegno il numero generato dalla funzione al computer
+if (!isValid){
+    alert('Errore! Inserisci dei valori validi');
+} else {
+    let cpuNumber;
+    let sumNumbers;
+    let result; // Risposta alla domanda "la somma dei numeri è pari?"
+    let getWinner = 'Hai vinto!';
+    
+    // Creo una funzione che restituisca un numero random da 1 a 5
+    function getRandomNumber(min = 1, max = 5) {
+        const random = Math.floor(Math.random() * (max - min + 1) + min);
+        return random;
+    }
+    
+    // Assegno il numero generato dalla funzione al computer
 cpuNumber = getRandomNumber();
 
 // Sommo i due numeri
@@ -58,3 +71,4 @@ console.log("Il computer ha scelto il numero " + cpuNumber);
 console.log("La somma dei numeri è " + sumNumbers);
 console.log(result);
 console.log(getWinner);
+}
